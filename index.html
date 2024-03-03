@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Check Product Authenticity</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+    .container {
+        text-align: center;
+    }
+    input[type="text"] {
+        padding: 10px;
+        margin-bottom: 20px;
+        width: 300px;
+        font-size: 16px;
+        box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;
+    }
+
+
+
+    button {
+
+        box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+        padding: 10px 20px;
+        background-color: #e4eeedf4;
+        border: none;
+        color: #fff;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+    
+    <!--[
+    button:hover {
+        background-color: #b36200;
+    }
+ 
+    button:active {
+        background-color: #02d9f0;
+    }
+   
+    ]-->
+
+    #result {
+        margin-top: 20px;
+        font-size: 18px;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <h2>Check  <span style="color:#16a34a">Product</span> Authenticity</h2>
+    <input type="text" id="securityCode" placeholder="Enter security code">
+    <button id="checkButton" onclick="checkSecurityCode()"> <span style="color:#16a34a">Check Code</span></span></button>
+    <p id="result"></p>
+</div>
+<script>
+    // Array to store used security codes
+    var usedCodes = [];
+
+    function checkSecurityCode() {
+        var securityCode = document.getElementById("securityCode").value;
+        // List of known original security codes
+        var knownOriginalCodes = ["ABC123", "XYZ456", "DEF789"]; // Example original codes
+        
+        // Remove spaces and convert to uppercase for comparison
+        var sanitizedSecurityCode = securityCode.replace(/\s/g, "").toUpperCase();
+        
+        // Check if the entered security code has been used before
+        if (usedCodes.includes(sanitizedSecurityCode)) {
+            document.getElementById("result").innerText = "এই কোড-টি আগে ব্যবহার করা হয়েছে!";
+            return;
+        }
+
+        // Check if the entered security code matches any known original code
+        if (knownOriginalCodes.includes(sanitizedSecurityCode)) {
+            document.getElementById("result").innerText = "এই পণ্য-টি অর্জিনাল!";
+        } else {
+            document.getElementById("result").innerText = "এই পণ্য-টি নকল!";
+        }
+
+        // Add the entered security code to the used codes array
+        usedCodes.push(sanitizedSecurityCode);
+
+        
+    }
+</script>
+</body>
+</html>
