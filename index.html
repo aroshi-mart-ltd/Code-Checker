@@ -81,15 +81,15 @@
 
         // Check if the entered security code has been used before
         if (usedCodes.includes(sanitizedSecurityCode)) {
-            document.getElementById("result").innerText = "This code has already been used!";
+            document.getElementById("result").innerText = "এই কোড-টি আগে ব্যবহার করা হয়েছে!";
             return;
         }
 
         // Check if the entered security code matches any known original code
         if (knownOriginalCodes.includes(sanitizedSecurityCode)) {
-            document.getElementById("result").innerText = "This product is authentic!";
+            document.getElementById("result").innerText = "এই পণ্য-টি অর্জিনাল!";
         } else {
-            document.getElementById("result").innerText = "This product is counterfeit!";
+            document.getElementById("result").innerText = "এই পণ্য-টি নকল!";
         }
 
         // Add the entered security code to the used codes array
