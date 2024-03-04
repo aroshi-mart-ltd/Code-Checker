@@ -1,72 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Check Product Authenticity</title>
-<style>
-    body {
-        font-family: Arial, sans-serif;
-        background-color: #f4f4f4;
-        margin: 0;
-        padding: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-    }
-    .container {
-        text-align: center;
-    }
-    input[type="text"] {
-        padding: 10px;
-        margin-bottom: 20px;
-        width: calc(100% - 40px); /* Adjusted width for responsiveness */
-        max-width: 300px; /* Added max-width for better appearance on larger screens */
-        font-size: 16px;
-        box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;
-    }
-    button {
-        color: #000;
-        padding: 15px 30px;
-        border: none;
-        border-radius: 8px;
-        cursor: pointer;
-        font-size: 16px;
-        box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
-    }
-    button:hover {
-        background-color: #000000;
-    }
-    /* Custom modal styles */
-    .custom-modal {
-        display: none;
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background-color: #fff;
-        color: #C70039;
-        padding: 20px;
-        border-radius: 8px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        text-align: center;
-        z-index: 1000;
-        box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;
-    }
-    #result {
-        margin-top: 20px;
-        font-size: 18px;
-    }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check Product Authenticity</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            text-align: center;
+        }
+        input[type="text"] {
+            padding: 10px;
+            margin-bottom: 20px;
+            width: calc(100% - 40px); /* Adjusted width for responsiveness */
+            max-width: 300px; /* Added max-width for better appearance on larger screens */
+            font-size: 16px;
+            box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;
+        }
+        button {
+            color: #000;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+        }
+        button:hover {
+            background-color: #000000;
+        }
+        /* Custom modal styles */
+        .custom-modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            color: #C70039;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            z-index: 1000;
+            box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 21px;
+            font-weight: bold;
+        }
+        footer {
+            position: absolute;
+            bottom: 160px;
+            width: 100%;
+            
+            color: #040c09;
+            padding: 10px 0;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
 <div class="container">
     <h2>Check  <span style="color:#16a34a">Product</span> Authenticity</h2>
     <input type="text" id="securityCode" placeholder="Enter security code"> <br>
-    <button id="checkButton" onclick="checkSecurityCode()"> <span style="color:#16a34a">Check Code</span></span></button>
+    <button id="checkButton" onclick="checkSecurityCode()"> <span style="color:#16a34a">Check Code</span></button>
     <p id="result"></p>
 </div>
+
+<footer>
+    &copy; 2024 Aroshi Mart Ltd. All rights reserved.
+</footer>
+
 <script>
     // Array to store used security codes
     var usedCodes = [];
@@ -85,16 +100,18 @@
             return;
         }
 
-        // Check if the entered security code matches any known original code
+        // Check if the entered security code matches any known original code 
         if (knownOriginalCodes.includes(sanitizedSecurityCode)) {
-            document.getElementById("result").innerText = "এই পণ্য-টি অর্জিনাল!";
+            document.getElementById("result").innerHTML = "এই পণ্য-টি অর্জিনাল! <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-patch-check-fill' viewBox='0 0 16 16'><path fill-rule='evenodd' d='M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01zm.287 5.984-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7 8.793l2.646-2.647a.5.5 0 0 1 .708.708'/></svg>";
         } else {
-            document.getElementById("result").innerText = "এই পণ্য-টি নকল!";
+            document.getElementById("result").innerHTML = "এই পণ্য-টি নকল! <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-x-circle-fill' viewBox='0 0 16 16'><path style='fill: #ff0000' d='M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293z'/></svg>";
         }
 
         // Add the entered security code to the used codes array
         usedCodes.push(sanitizedSecurityCode);
     }
 </script>
+
+
 </body>
 </html>
